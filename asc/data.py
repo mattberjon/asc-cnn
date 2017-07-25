@@ -1,9 +1,32 @@
+# -*- coding: utf-8 -*-
+
+""" Data module
+
+This module lets the program to download the data from the server.
+
+"""
 import os
-import sys
 import requests
+import sys
 import time
 import zipfile
-# Download the data in the designated folder
+
+class Data(object):
+    """ Data collection.
+    """
+    
+    def __init__(self):
+        pass
+
+    def get_data(self):
+        pass
+
+    def unzip_data(self):
+        pass
+
+    def clear_zip(self):
+        pass
+
 
 tmp_dir = '/tmp'
 dest_dir = 'data'
