@@ -7,6 +7,7 @@ import sys
 
 from . import __version__
 
+
 def version_msg():
     """ Returns the program version, location and python version.
     """
@@ -14,6 +15,7 @@ def version_msg():
     python_version = sys.version[:3]
     message = 'asc %(version)s (Python {})'
     return message.format(python_version)
+
 
 @click.command(context_settings=dict(help_option_names=['-h', '--help']))
 @click.version_option(
