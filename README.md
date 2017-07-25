@@ -6,6 +6,8 @@ Udacity. For a description of the proposal, you can refer to its [web version][l
 
 ## Dataset
 
+The dataset can be downloaded on the [Zenodo][l2] server.
+
 ## Installation
 
 The project is using python 2.7 and all dependencies are given in the
@@ -20,3 +22,4 @@ pip install -r requirements.txt
 
 
 [l1]: http://berjon.net/blog/2017/07/22/acoustic-scene-classficiation-using-cnn/
+[l2]: https://zenodo.org/record/400515
