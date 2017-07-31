@@ -3,12 +3,14 @@
 """Console script for asc."""
 
 import click
+import configparser
 import os
 import sys
 
 from . import __version__
 from . import data
 
+config = configparser.ConfigParser()
 
 def version_msg():
     """ Returns the program version, location and python version.
@@ -62,7 +64,6 @@ def getdata(url_file, tmp_dir, dest_dir):
     # Check the data folder. If the folder doesn't exist, we create it,
     # if it exist, then ask the user if we can override it before proceed
     # to do anything else and store the path in a config file.
-
     dest_path = dest_dir + '/data'
 
     if os.path.isdir(dest_path):
@@ -76,19 +77,23 @@ def getdata(url_file, tmp_dir, dest_dir):
             os.makedirs(dest_path)
             click.echo("Folder created!")
             # Store the path into a config file for later use
-        sys.exit()
     else:
         click.echo('path doesnt exist')
         sys.exit()
 
-    if url_file:
-        pass
+    if url_file == None:
+        click.echo('You must specify a file containing the urls to download')
+        sys.exit()
     else:
-        click.echo(dest_dir)
-        #  default_urls_path = sys.path[-1] + '/data_urls.txt'
-        #  get_data = data.Data()
-        #  #  urls = get_data.file_to_list(default_urls_path)
-        #  #  get_data.download(urls, tmp_dir)
+        pass
+
+    # start download
+    get_data = data.Data()
+    file_list = get_data.file_to_list(url_file)
+    get_data.download(file_list, dest_dir)
+
+    # unzip the files
+
 
 
 if __name__ == "__main__":
