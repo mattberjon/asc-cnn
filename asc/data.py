@@ -34,6 +34,7 @@ class Data(object):
                 lines.append(line.split('\n')[0])
         return lines
 
+
     def download(self, url_list, dest_dir):
         """ Download data from a list of URLs
 
@@ -70,27 +71,26 @@ class Data(object):
 
             print('')
 
-    def unzip_data(self):
-        pass
+    def unzip_data(self, url_list, origin_dir, dest_dir):
+        """ Unzip data files
+
+        Unzip data files given a list of file names, the path where they are
+        store and where they will be unzipped.
+
+        Args:
+            filenames (str): a list of strings containing the filenames
+            origin_dir (str): directory where are stored the files
+            dest_dir (str): directory where the files will be extracted
+        """
+        for elem in url_list:
+            filename = os.path.basename(elem)
+            zip_ref = zipfile.ZipFile(origin_dir + '/' + filename, 'r')
+            zip_ref.extractall(dest_dir)
+            zip_ref.close()
 
     def clear_zip(self):
         pass
 
-
-def unziper(filenames, origin_dir, dest_dir):
-    """
-
-    Args:
-        filenames: a list of strings containing the filenames
-        origin_dir: directory where are stored the files
-        dest_dir: directory where the files will be extracted
-    """
-
-    for elem in filenames:
-        print(elem)
-        zip_ref = zipfile.ZipFile(origin_dir + '/' + elem, 'r')
-        zip_ref.extractall(dest_dir)
-        zip_ref.close()
 
 
 def cleaner(filenames, path):
