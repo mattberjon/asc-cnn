@@ -19,6 +19,15 @@ class Data(object):
         pass
 
     def file_to_list(self, filename):
+        """ Parse a file and transform it into a list
+        
+        Parse a file line by line to make a list with the urls contained
+        inside.
+        
+        Args:
+            filename (str): path to the file containing the URLs.
+
+        """
         lines = []
         with open(filename) as f:
             for line in f.readlines():
@@ -26,6 +35,16 @@ class Data(object):
         return lines
 
     def download(self, url_list, dest_dir):
+        """ Download data from a list of URLs
+
+        Download data from a list of URLs and display a progress according to
+        the size of the file.
+
+        Args:
+            url_list(list): list containing URLs of files to download.
+            dest_dir (str): path to where download the data.
+
+        """
         elem_nb = len(url_list)
         counter = 0
 
