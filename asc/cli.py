@@ -93,9 +93,10 @@ def getdata(url_file, tmp_dir, dest_dir):
     # start download
     get_data = data.Data()
     file_list = get_data.file_to_list(url_file)
-    get_data.download(file_list, dest_dir)
+    get_data.download(file_list, tmp_dir)
 
     # unzip the files
+    get_data.unzip(file_list, tmp_dir, dest_dir)
 
 
 if __name__ == "__main__":
