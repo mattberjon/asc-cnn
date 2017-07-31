@@ -12,6 +12,7 @@ from . import data
 
 config = configparser.ConfigParser()
 
+
 def version_msg():
     """ Returns the program version, location and python version.
     """
@@ -68,20 +69,22 @@ def getdata(url_file, tmp_dir, dest_dir):
 
     if os.path.isdir(dest_path):
         # python 3: needs to use input() instead of raw_input()
-        user_input = raw_input("The %s already exists, do you still want to proceed? [y/N]" % dest_path)
+        user_input = raw_input(
+                "The %s already exists, do you still want to proceed? [y/N]"
+                % dest_path)
         if user_input == 'y':
-            # store the path into a config file for later use
             click.echo("Ok! let's continue to the next step")
         else:
-            # Create the folder
-            os.makedirs(dest_path)
-            click.echo("Folder created!")
-            # Store the path into a config file for later use
+            click.echo("Ok, bye!")
+            sys.exit()
     else:
         click.echo('path doesnt exist')
-        sys.exit()
+        # Create the folder
+        os.makedirs(dest_path)
+        click.echo("Folder created!")
+        # store the path into a config file for later use
 
-    if url_file == None:
+    if url_file is None:
         click.echo('You must specify a file containing the urls to download')
         sys.exit()
     else:
@@ -93,7 +96,6 @@ def getdata(url_file, tmp_dir, dest_dir):
     get_data.download(file_list, dest_dir)
 
     # unzip the files
-
 
 
 if __name__ == "__main__":
