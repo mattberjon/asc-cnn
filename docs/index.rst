@@ -1,5 +1,5 @@
-Welcome to Acoustic Scene Classification's documentation!
-======================================
+Acoustic Scene Classification's documentation!
+==============================================
 
 Contents:
 
@@ -13,10 +13,4 @@ Contents:
    contributing
    authors
    history
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   source/modules
