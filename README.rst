@@ -8,6 +8,13 @@ Acoustic Scene Classification
      :target: https://pyup.io/repos/github/mattberjon/asc-cnn/
      :alt: Updates
 
+.. image:: https://travis-ci.org/mattberjon/asc-cnn.svg?branch=master
+    :target: https://travis-ci.org/mattberjon/asc-cnn
+
+.. image:: https://coveralls.io/repos/github/mattberjon/asc-cnn/badge.svg?branch=master
+    :target: https://coveralls.io/github/mattberjon/asc-cnn?branch=master
+
+
 Acoustic Scene Auditory (ASC) using Convolutional Neural Network (CNN) is a
 project being part of the Machine Learning Nanodegreen program given by
 Udacity. For a description of the proposal, you can refer to its `web
