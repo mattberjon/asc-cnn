@@ -78,4 +78,9 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     setup_requires=setup_requirements,
+    extras_require={
+            ':python_version=="2.7"': [
+                'functools32>=3.2<=3.99'
+            ],
+    },
 )
