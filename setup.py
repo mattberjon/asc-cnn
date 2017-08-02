@@ -17,7 +17,6 @@ requirements = [
     'bleach==1.5.0',
     'cycler==0.10.0',
     'funcsigs==1.0.2',
-    'functools32==3.2.3.post2',
     'html5lib==0.9999999',
     'Markdown==2.6.8',
     'matplotlib==2.0.2',
@@ -30,7 +29,6 @@ requirements = [
     'pytz==2017.2',
     'scipy==0.19.1',
     'six==1.10.0',
-    'subprocess32==3.2.7',
     'tensorflow==1.2.1',
     'Werkzeug==0.12.2',
 ]
@@ -80,7 +78,8 @@ setup(
     setup_requires=setup_requirements,
     extras_require={
             ':python_version=="2.7"': [
-                'functools32>=3.2<=3.99'
+                'functools32>=3.2<=3.99',
+                'subprocess32==3.2.7',
             ],
     },
 )
