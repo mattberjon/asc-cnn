@@ -4,6 +4,10 @@ Acoustic Scene Classification
 
 
 
+.. image:: https://img.shields.io/pypi/v/nine.svg
+    :target: https://pypi.python.org/pypi/asc/
+    :alt: PyPI Latest Version
+
 .. image:: https://pyup.io/repos/github/mattberjon/asc-cnn/shield.svg
      :target: https://pyup.io/repos/github/mattberjon/asc-cnn/
      :alt: Updates
