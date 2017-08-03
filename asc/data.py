@@ -78,7 +78,7 @@ class Data(object):
         store and where they will be unzipped.
 
         Args:
-            filenames (str): a list of strings containing the filenames
+            url_list (str): list of strings containing the urls
             origin_dir (str): directory where are stored the files
             dest_dir (str): directory where the files will be extracted
         """
