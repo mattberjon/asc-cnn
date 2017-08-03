@@ -88,27 +88,16 @@ class Data(object):
             zip_ref.extractall(dest_dir)
             zip_ref.close()
 
-    def clear_zip(self):
-        pass
+    def clear_zip(self, url_list, tmp_dir):
+        """ Clear the archives
 
+        Delete the downloaded archives.
 
-
-def cleaner(filenames, path):
-    for elem in filenames:
-        os.remove(path + '/' + elem)
-        print("%s deleted" % elem)
-
-
-#  dlw = downloader(urls, tmp_dir)
-#  if dlw:
-#      print('Download complete')
-
-#  filenames = []
-#  for elem in urls:
-#      filenames.append(elem.split('/')[-1])
-
-#  print('Unzipping of the files')
-#  unziper(filenames, tmp_dir, dest_dir)
-#
-#  print('Cleaning of the downloaded files')
-#  cleaner(filenames, tmp_dir)
+        Args:
+            url_list (str): list of strings containing the urls
+            tmp_dir (str): path where are store the archives
+        """
+        for elem in url_list:
+            filename = os.path.basename(elem)
+            os.remove(tmp_dir + '/' + elem)
+            print("%s deleted" % elem)
