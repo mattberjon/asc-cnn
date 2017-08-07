@@ -2,21 +2,53 @@
 Acoustic Scene Classification
 =============================
 
+* - Development
+  - |travis| |coveralls|
+* - Last release
+  - |v| |pyversions| |dependencies|
+* - PyPI status
+  - |format| |status| |l|
 
 
-.. image:: https://img.shields.io/pypi/v/nine.svg
-    :target: https://pypi.python.org/pypi/asc/
-    :alt: PyPI Latest Version
+.. |travis| image::
+  https://travis-ci.org/mattberjon/asc-cnn.svg?branch=master
+  :target: https://travis-ci.org/mattberjon/asc-cnn
+  :alt: Travis CI builds
 
-.. image:: https://pyup.io/repos/github/mattberjon/asc-cnn/shield.svg
-     :target: https://pyup.io/repos/github/mattberjon/asc-cnn/
-     :alt: Updates
+.. |coveralls| image::
+  https://coveralls.io/repos/github/mattberjon/asc-cnn/badge.svg?branch=master
+  :target: https://coveralls.io/github/mattberjon/asc-cnn?branch=master
+  :alt: Coverall coverage report
 
-.. image:: https://travis-ci.org/mattberjon/asc-cnn.svg?branch=master
-    :target: https://travis-ci.org/mattberjon/asc-cnn
+.. |v| image:: 
+  https://img.shields.io/pypi/v/asc.svg
+  :target: https://pypi.python.org/pypi/asc/
+  :alt: PyPI Latest Version
 
-.. image:: https://coveralls.io/repos/github/mattberjon/asc-cnn/badge.svg?branch=master
-    :target: https://coveralls.io/github/mattberjon/asc-cnn?branch=master
+.. |pyversions| image::
+  https://img.shields.io/pypi/pyversions/asc.svg
+  :target: https://pypi.python.org/pypi/asc/
+  :alt: Python versions (PyPI)
+
+.. |dependencies| image::
+  https://pyup.io/repos/github/mattberjon/asc-cnn/shield.svg
+  :target: https://pyup.io/repos/github/mattberjon/asc-cnn/
+  :alt: Updates
+
+.. |format| image::
+  https://img.shields.io/pypi/format/asc.svg 
+  :target: https://pypi.python.org/pypi/asc
+  :alt: Distribution format (PyPI)
+
+.. |status| image::
+  https://img.shields.io/pypi/status/asc.svg
+  :target: https://pypi.python.org/pypi/asc
+  :alt: Project status (PyPI)
+
+.. |l| image::
+  https://img.shields.io/pypi/l/asc.svg
+  :target: https://pypi.python.org/pypi/asc
+  :alt: License (PyPI)
 
 
 Acoustic Scene Auditory (ASC) using Convolutional Neural Network (CNN) is a
