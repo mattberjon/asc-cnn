@@ -2,6 +2,45 @@
 History
 =======
 
+0.2.3 (2017-08-07)
+------------------
+
+Added
+^^^^^
+
+* Travis config file
+* pytest suite
+* CLI tests
+* `issue #5`_: Package coverage for the development setup
+* `issue #6`_: adding of a `clear_zip()` to clean the archive files
+
+Changed
+^^^^^^^
+
+* Python 3.3 testing removed
+
+Deprecated
+^^^^^^^^^^
+
+* Nothing
+
+Removed
+^^^^^^^
+
+* Nothing
+
+Fixed
+^^^^^
+
+* `Issue #4`_: invalid functools dependency
+* `Issue #7`_: update of docstring `unzip_data()`
+
+Security
+^^^^^^^^
+
+* Nothing
+
+
 0.2.2 (2017-07-31)
 ------------------
 
@@ -110,3 +149,9 @@ Security
 ------------------
 
 * First release as a package.
+
+
+.. _Issue #4: https://github.com/mattberjon/asc-cnn/issues/4
+.. _Issue #7: https://github.com/mattberjon/asc-cnn/issues/7
+.. _Issue #5: https://github.com/mattberjon/asc-cnn/issues/5
+.. _Issue #6: https://github.com/mattberjon/asc-cnn/issues/6
