@@ -2,7 +2,6 @@
 Acoustic Scene Classification
 =============================
 
-<<<<<<< HEAD
 +------------------+---------------------------------+
 | **Development**  | |travis| |coveralls|            |
 +------------------+---------------------------------+
@@ -10,15 +9,6 @@ Acoustic Scene Classification
 +------------------+---------------------------------+
 | **PyPI status**  | |format| |status| |l|           |
 +------------------+---------------------------------+
-=======
-* - Development
-  - |travis| |coveralls|
-* - Last release
-  - |v| |pyversions| |dependencies|
-* - PyPI status
-  - |format| |status| |l|
-
->>>>>>> 4caf0b5b89e352796bd33378bda44d13897d71fb
 
 .. |travis| image::
   https://travis-ci.org/mattberjon/asc-cnn.svg?branch=master
