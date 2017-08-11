@@ -65,7 +65,7 @@ def getdata(url_file, tmp_dir, dest_dir):
     # Check the data folder. If the folder doesn't exist, we create it,
     # if it exist, then ask the user if we can override it before proceed
     # to do anything else and store the path in a config file.
-    dest_path = dest_dir + '/data'
+    dest_path = os.path.abs(dest_dir) + '/data'
 
     if os.path.isdir(dest_path):
         # python 3: needs to use input() instead of raw_input()
