@@ -9,8 +9,12 @@ import sys
 
 from . import __version__
 from . import data
+from . import utils
 
-config = configparser.ConfigParser()
+config = configparser.SafeConfigParser()
+config_path = os.path.expanduser('~') + '/.ascrc'
+config.read(config_path)
+config_file = open(config_path, 'w')
 
 
 def version_msg():
@@ -67,7 +71,6 @@ def getdata(url_file, tmp_dir, dest_dir):
     # to do anything else and store the path in a config file.
     dest_path = os.path.abspath(dest_dir) + '/data'
 
-
     if os.path.isdir(dest_path):
         # python 3: needs to use input() instead of raw_input()
         user_input = raw_input(
@@ -75,6 +78,13 @@ def getdata(url_file, tmp_dir, dest_dir):
                 % dest_path)
         if user_input == 'y':
             click.echo("Ok! let's continue to the next step")
+            utils.write_config(
+                    'data',
+                    'path',
+                    dest_path,
+                    config,
+                    config_file)
+            click.echo("Data config updated")
         else:
             click.echo("Ok, bye!")
             sys.exit()
@@ -83,13 +93,14 @@ def getdata(url_file, tmp_dir, dest_dir):
         # Create the folder
         os.makedirs(dest_path)
         click.echo("Folder created!")
-        # store the path into a config file for later use
-        config_file = open(os.path.expanduser('~') + '/.ascrc', 'w')
-        # store the path
-        config.add_section('data')
-        config.set('data', 'path', dest_path)
-        config.write(config_file)
-
+        # store the path in the config file
+        utils.write_config(
+                'data',
+                'path',
+                dest_path,
+                config,
+                config_file)
+        click.echo("Data config updated")
 
     if url_file is None:
         click.echo('You must specify a file containing the urls to download')
