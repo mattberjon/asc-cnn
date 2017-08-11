@@ -44,6 +44,26 @@ def main(ctx):
 
 @main.command()
 @click.option(
+        '-s',
+        '--sampling-rate',
+        type=int,
+        default=44100,
+        help='Set the sampling rate of the project in Hertz. [default=44100]')
+def processing(sampling_rate):
+    """ Set up the audio processing chain.
+    """
+    if sampling_rate:
+        utils.write_config(
+                'audio',
+                'sampling_rate',
+                sampling_rate,
+                config,
+                config_file)
+        click.echo("Audio->sampling rate configuration updated")
+
+
+@main.command()
+@click.option(
         '-u',
         '--url-file',
         type=click.Path(),
