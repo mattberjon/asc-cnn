@@ -20,9 +20,9 @@ def write_config(section, option, data, config_obj, config_file):
         Need to cast the object to string before saving the data.
     """
     if config_obj.has_section(section):
-        config_obj.set(section, option, data)
+        config_obj.set(section, option, str(data))
     else:
         config_obj.add_section(section)
-        config_obj.set(section, option, data)
+        config_obj.set(section, option, str(data))
 
     config_obj.write(config_file)
