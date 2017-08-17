@@ -31,11 +31,13 @@ requirements = [
     'six==1.10.0',
     'tensorflow==1.2.1',
     'Werkzeug==0.12.2',
+    'PySoundFile==0.9.0.post1',
 ]
 
 setup_requirements = [
     'pytest-runner',
-    # TODO(mattberjon): put setup requirements (distutils extensions, etc.) here
+    # TODO(mattberjon): put setup requirements (distutils extensions, etc.)
+    # here
 ]
 
 test_requirements = [
