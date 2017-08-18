@@ -30,6 +30,31 @@ def write_config(section, option, data, config_obj, config_file):
     config_obj.write(config_file)
 
 
+def read_config(section, option, config_obj):
+    """ Look for a given option in a config file.
+
+    If exists, return the value in a config file according to the section
+    and option.
+
+    Args:
+        section (str):  section related to the option looked for.
+        option (str):   option related to the value looked for.
+        config_obj (obj):   configparser object.
+
+    Returns:
+        value given for a specific tuple section/option.
+
+    Todo:
+        - Be able to cast the data into the right type.
+    """
+    if config_obj.has_option(section, option):
+        return config_obj.get(section, option)
+    else:
+        raise StandardError(
+                "Impossible to find %s.%s in the configuration file"
+                % (section, option))
+
+
 def conf_param_extract(parameter):
     data = re.split('\.', parameter)
     section = data[0]
