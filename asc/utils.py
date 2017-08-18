@@ -1,3 +1,5 @@
+import re
+
 
 def write_config(section, option, data, config_obj, config_file):
     """ Write/Update the configuration file
@@ -26,3 +28,10 @@ def write_config(section, option, data, config_obj, config_file):
         config_obj.set(section, option, str(data))
 
     config_obj.write(config_file)
+
+
+def conf_param_extract(parameter):
+    data = re.split('\.', parameter)
+    section = data[0]
+    option = data[1]
+    return section, option

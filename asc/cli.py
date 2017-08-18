@@ -11,9 +11,7 @@ from . import __version__
 from . import data
 from . import utils
 
-config = configparser.SafeConfigParser()
 config_path = os.path.expanduser('~') + '/.ascrc'
-config.read(config_path)
 config_file = open(config_path, 'w')
 
 
@@ -60,6 +58,27 @@ def processing(sampling_rate):
                 config,
                 config_file)
         click.echo("Audio->sampling rate configuration updated")
+
+
+@main.command()
+@click.argument('parameter')
+@click.argument('value')
+def config(parameter, value):
+    """ Configure the project.
+
+    Save the configuration into the configuration file [default=~/.ascrc]
+    See the documentation for the available list of parameters and values.
+    """
+    # Separation the section from the option
+    section, option = utils.conf_param_extract(parameter)
+    config = configparser.ConfigParser()
+    config.read(config_path)
+    utils.write_config(
+            section,
+            option,
+            value,
+            config,
+            config_file)
 
 
 @main.command()
