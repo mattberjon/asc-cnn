@@ -12,7 +12,6 @@ from . import data
 from . import utils
 
 config_path = os.path.expanduser('~') + '/.ascrc'
-config_file = open(config_path, 'w')
 
 
 def version_msg():
@@ -73,6 +72,7 @@ def config(parameter, value):
     section, option = utils.conf_param_extract(parameter)
     config = configparser.ConfigParser()
     config.read(config_path)
+    config_file = open(config_path, 'w')
     utils.write_config(
             section,
             option,
