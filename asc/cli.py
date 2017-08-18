@@ -81,25 +81,25 @@ def config(parameter, value):
             config_file)
 
 
+#  @click.option(
+#          '-u',
+#          '--url-file',
+#          type=click.Path(),
+#          help='Path to the file containing the URLs to download')
+#  @click.option(
+#          '-t',
+#          '--tmp-dir',
+#          type=click.Path(),
+#          default='/tmp',
+#          help='Path to the temporary download folder. [default=/tmp]')
+#  @click.option(
+#          '-d',
+#          '--dest-dir',
+#          type=click.Path(),
+#          default=os.path.expanduser('~'),
+#          help='Path to the data folder. [default=$HOME]')
 @main.command()
-@click.option(
-        '-u',
-        '--url-file',
-        type=click.Path(),
-        help='Path to the file containing the URLs to download')
-@click.option(
-        '-t',
-        '--tmp-dir',
-        type=click.Path(),
-        default='/tmp',
-        help='Path to the temporary download folder. [default=/tmp]')
-@click.option(
-        '-d',
-        '--dest-dir',
-        type=click.Path(),
-        default=os.path.expanduser('~'),
-        help='Path to the data folder. [default=$HOME]')
-def getdata(url_file, tmp_dir, dest_dir):
+def getdata():
     """Download dataset from the server.
 
     Download the dataset from the server and unzip the all in the default
@@ -108,7 +108,14 @@ def getdata(url_file, tmp_dir, dest_dir):
     # Check the data folder. If the folder doesn't exist, we create it,
     # if it exist, then ask the user if we can override it before proceed
     # to do anything else and store the path in a config file.
-    dest_path = os.path.abspath(dest_dir) + '/data'
+    config = configparser.ConfigParser()
+    config.read(config_path)
+
+    url_list = utils.read_config('path', 'url_list', config)
+    tmp_path = utils.read_config('path', 'tmp', config)
+    data_path = utils.read_config('path', 'data', config)
+
+    dest_path = os.path.abspath(data_path) + '/data'
 
     if os.path.isdir(dest_path):
         # python 3: needs to use input() instead of raw_input()
@@ -117,13 +124,6 @@ def getdata(url_file, tmp_dir, dest_dir):
                 % dest_path)
         if user_input == 'y':
             click.echo("Ok! let's continue to the next step")
-            utils.write_config(
-                    'data',
-                    'path',
-                    dest_path,
-                    config,
-                    config_file)
-            click.echo("Data config updated")
         else:
             click.echo("Ok, bye!")
             sys.exit()
@@ -132,28 +132,14 @@ def getdata(url_file, tmp_dir, dest_dir):
         # Create the folder
         os.makedirs(dest_path)
         click.echo("Folder created!")
-        # store the path in the config file
-        utils.write_config(
-                'data',
-                'path',
-                dest_path,
-                config,
-                config_file)
-        click.echo("Data config updated")
-
-    if url_file is None:
-        click.echo('You must specify a file containing the urls to download')
-        sys.exit()
-    else:
-        pass
 
     # start download
     get_data = data.Data()
-    file_list = get_data.file_to_list(url_file)
-    get_data.download(file_list, tmp_dir)
+    file_list = get_data.file_to_list(url_list)
+    get_data.download(file_list, tmp_path)
 
     # unzip the files
-    get_data.unzip(file_list, tmp_dir, dest_dir)
+    get_data.unzip(file_list, tmp_path, dest_path)
 
 
 if __name__ == "__main__":
