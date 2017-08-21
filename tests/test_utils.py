@@ -2,6 +2,13 @@ import pytest
 from asc import utils
 
 
+def test_read_config(config):
+    with pytest.raises(StandardError):
+        utils.read_config('something', 'nonexisting', config)
+
+    assert utils.read_config('audio', 'samplerate', config) == '44100'
+
+
 def test_conf_param_extract():
     with pytest.raises(TypeError):
         utils.conf_param_extract(1000)
