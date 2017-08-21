@@ -6,6 +6,7 @@ def test_read_config(config):
     with pytest.raises(StandardError):
         utils.read_config('something', 'nonexisting', config)
 
+    config.set('audio', 'samplerate', '44100')
     assert utils.read_config('audio', 'samplerate', config) == '44100'
 
 
