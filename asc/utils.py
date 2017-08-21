@@ -50,7 +50,7 @@ def read_config(section, option, config_obj):
     if config_obj.has_option(section, option):
         return config_obj.get(section, option)
     else:
-        raise StandardError(
+        raise ValueError(
                 "Impossible to find %s.%s in the configuration file"
                 % (section, option))
 

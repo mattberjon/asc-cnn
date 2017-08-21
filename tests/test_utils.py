@@ -3,7 +3,7 @@ from asc import utils
 
 
 def test_read_config(config):
-    with pytest.raises(StandardError):
+    with pytest.raises(ValueError):
         utils.read_config('something', 'nonexisting', config)
 
     config.add_section('audio')
