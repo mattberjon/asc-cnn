@@ -58,7 +58,7 @@ def read_config(section, option, config_obj):
 def conf_param_extract(parameter):
     """ Extract the section and option given the parameter.
 
-    Extract the section and option given the parameter that is in the 
+    Extract the section and option given the parameter that is in the
     specific format section.option
 
     Args:
