@@ -4,6 +4,10 @@
 language: python
 python: 2.7
 
+before_script:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y python3-tk
+
 env:
   - TOXENV=py35
   - TOXENV=py34
