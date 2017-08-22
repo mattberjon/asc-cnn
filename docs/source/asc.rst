@@ -28,6 +28,14 @@ asc\.data module
     :undoc-members:
     :show-inheritance:
 
+asc\.utils module
+-----------------
+
+.. automodule:: asc.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------

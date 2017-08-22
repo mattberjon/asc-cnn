@@ -14,4 +14,5 @@ Contents:
    contributing
    authors
    history
+   source/asc
    source/modules
