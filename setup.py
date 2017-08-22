@@ -47,7 +47,7 @@ test_requirements = [
 
 setup(
     name='asc',
-    version='0.3.0',
+    version='0.3.1',
     description="Acoustic Scene Classification using Convolutional Neural Network",
     long_description=readme + '\n\n' + history,
     author="Matthieu Berjon",
