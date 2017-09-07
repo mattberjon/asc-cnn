@@ -23,12 +23,22 @@ you through the process.
 .. _pip: https://pip.pypa.io
 .. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
 
-In order to properly work you need to ensure that libsndfile is installed such as
-on Debian:
+Requirements
+^^^^^^^^^^^^
+
+In order to properly work you need to satisfy several dependencies:
+
+- tkinter (python 2 or 3 depending of your system)
+- libsndfile
+
+For example on Debian:
 
 .. code-block:: console
   
-  $ sudo apt-get install libsndfile
+  $ sudo apt-get install libsndfile python-tk
+
+If you still have issues at the installation, you can still refer to the
+:doc:`faq` or post an issue on the `Github repo`_.
 
 From sources
 ------------
