@@ -2,9 +2,11 @@
 
 """Main module."""
 
+import numpy as np
 from scipy import signal
 import matplotlib.pyplot as plt
 from soundfile import SoundFile, blocks as sfblocks
+#  from librosa.display import specshow
 
 
 def spectrogram(data, sampling_rate):
@@ -77,17 +79,14 @@ def audio_metadata(filename, frame_size=9, display_plot=False):
     audio_file = SoundFile(filename)
     af_chan_nb = audio_file.channels
     af_samplerate = audio_file.samplerate
-    
+
     for block in sfblocks(filename, blocksize=chunk):
         # separate the channels to compute the spectrograms
-        block_left = block[:, 0]
-        block_right = block[:, 1]
-        # Compute the dynamic spectrogram
-        f_left, t_left, Sxx_left = spectrogram(block_left, 44100)
-        f_right, t_right, Sxx_right = spectrogram(block_right, 44100)
-        # Plot the spectrogram
-        plot_spectrogram(f_left, t_left, Sxx_left, display_plot)
-        plot_spectrogram(f_right, t_right, Sxx_right, display_plot)
+        for chan in np.arange(af_chan_nb):
+            # Compute the dynamic spectrogram
+            f, t, Sxx = spectrogram(block[:, chan], af_samplerate)
+            # Plot the spectrogram
+            plot_spectrogram(f, t, Sxx, display_plot)
 
 
 def process_audio():
