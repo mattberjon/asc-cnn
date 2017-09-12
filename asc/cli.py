@@ -8,8 +8,10 @@ import os
 import sys
 
 from . import __version__
+#  from . import audio
 from . import data
 from . import utils
+from . import audio
 
 config_path = os.path.expanduser('~') + '/.ascrc'
 
@@ -41,22 +43,29 @@ def main(ctx):
 
 @main.command()
 @click.option(
-        '-s',
-        '--sampling-rate',
+        '-f',
+        '--filename')
+@click.option(
+        '-fs',
+        '--frame-size',
         type=int,
-        default=44100,
-        help='Set the sampling rate of the project in Hertz. [default=44100]')
-def processing(sampling_rate):
+        default=512,
+        help='Frame size in samples. [default=512]')
+def processing(frame_size, filename):
     """ Set up the audio processing chain.
     """
-    if sampling_rate:
-        utils.write_config(
-                'audio',
-                'sampling_rate',
-                sampling_rate,
-                config,
-                config_file)
-        click.echo("Audio->sampling rate configuration updated")
+    #  if sampling_rate:
+    #      utils.write_config(
+    #              'audio',
+    #              'sampling_rate',
+    #              sampling_rate,
+    #              config,
+    #              config_file)
+    #      click.echo("Audio->sampling rate configuration updated")
+    audio.process_audio(filename, frame_size, display=True)
+    #  print(chan_nb, samplerate, frame_size)
+    #  audio.spectrogram(filename)
+
 
 
 @main.command()
