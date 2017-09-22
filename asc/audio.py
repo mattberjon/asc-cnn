@@ -78,6 +78,10 @@ def process_audio(filename, frame_size, display):
         - check if the samplerate of the file corresponds to the samplerate
         in the configuration file
 
+    Note:
+        According to the 2016 base line code, the frame size is 40ms with
+        a hop size of 50%.
+
     """
     chan_nb, samplerate = extract_audio_data(filename)
 
