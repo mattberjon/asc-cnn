@@ -83,12 +83,16 @@ def process_audio(filename, frame_size, display):
         a hop size of 50%.
 
     """
+    samples = librosa.frames_to_samples(frame_size)
     chan_nb, samplerate = extract_audio_data(filename)
 
-    for block in sfblocks(filename, blocksize=frame_size):
+    for block in sfblocks(filename, blocksize=samples[0]):
         # separate the channels to compute the spectrograms
         for chan in np.arange(chan_nb):
+            if chan_nb < 2:
+                y = block
+            else:
+                y = block[:, chan]
             # Compute the dynamic spectrogram
-            y = block[:, chan]
+            #  y = block[:, chan]
             spectrogram(y, display=True)
-

@@ -49,8 +49,8 @@ def main(ctx):
         '-fs',
         '--frame-size',
         type=int,
-        default=512,
-        help='Frame size in samples. [default=512]')
+        default=1,
+        help='Frame size in samples. 1 frame=512 samples [default=1]')
 def processing(frame_size, filename):
     """ Set up the audio processing chain.
     """
