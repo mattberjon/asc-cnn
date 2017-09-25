@@ -56,33 +56,24 @@ def main(ctx):
         '--mel-bands',
         type=int,
         default=128,
-        help='Number of mel bands to compute the dynamic spectrogram. [default=128]')
+        help='Number of mel bands to compute the dynamic spectrogram.\
+                [default=128]')
 @click.option(
         '-fm',
         '--frequency-max',
         type=int,
         default=22050,
-        help='Frequency max to apply to the mel band in Hertz. [default=22050]')
+        help='Frequency max to apply to the mel band in Hertz.\
+                [default=22050]')
 def processing(frame_size, filename, mel_bands, frequency_max):
     """ Set up the audio processing chain.
     """
-    #  if sampling_rate:
-    #      utils.write_config(
-    #              'audio',
-    #              'sampling_rate',
-    #              sampling_rate,
-    #              config,
-    #              config_file)
-    #      click.echo("Audio->sampling rate configuration updated")
     audio.process_audio(
             filename,
             frame_size,
             mel_bands,
             frequency_max,
             display=True)
-    #  print(chan_nb, samplerate, frame_size)
-    #  audio.spectrogram(filename)
-
 
 
 @main.command()
