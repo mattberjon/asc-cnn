@@ -51,7 +51,19 @@ def main(ctx):
         type=int,
         default=1,
         help='Frame size in samples. 1 frame=512 samples [default=1]')
-def processing(frame_size, filename):
+@click.option(
+        '-m',
+        '--mel-bands',
+        type=int,
+        default=128,
+        help='Number of mel bands to compute the dynamic spectrogram. [default=128]')
+@click.option(
+        '-fm',
+        '--frequency-max',
+        type=int,
+        default=22050,
+        help='Frequency max to apply to the mel band in Hertz. [default=22050]')
+def processing(frame_size, filename, mel_bands, frequency_max):
     """ Set up the audio processing chain.
     """
     #  if sampling_rate:
@@ -62,7 +74,12 @@ def processing(frame_size, filename):
     #              config,
     #              config_file)
     #      click.echo("Audio->sampling rate configuration updated")
-    audio.process_audio(filename, frame_size, display=True)
+    audio.process_audio(
+            filename,
+            frame_size,
+            mel_bands,
+            frequency_max,
+            display=True)
     #  print(chan_nb, samplerate, frame_size)
     #  audio.spectrogram(filename)
 

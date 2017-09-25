@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import librosa
 import librosa.display
+import librosa.feature
 import matplotlib.pyplot as plt
 import numpy as np
 from soundfile import SoundFile, blocks as sfblocks
@@ -30,7 +31,7 @@ def extract_audio_data(filename):
     return af_chan_nb, af_samplerate
 
 
-def spectrogram(data, display=False):
+def dynamic_spectrogram(data, display=False):
     """ Compute the spectrogram of a time serie of samples.
 
     The dynamic spectrogram is computed using the `spectrogram()` function
@@ -60,7 +61,27 @@ def spectrogram(data, display=False):
         plt.save()
 
 
-def process_audio(filename, frame_size, display):
+def static_spectrogram(data, mel_bands=128, fmax=22050, display=False):
+    data_freq_power = np.abs(librosa.stft(data))**2
+    librosa.feature.melspectrogram(
+            S=data_freq_power,
+            power=2.0,
+            n_mels=mel_bands,
+            fmax=fmax)
+
+    librosa.display.specshow(
+            librosa.power_to_db(data_freq_power, ref=np.max),
+            y_axis='mel',
+            x_axis='time',
+            fmax=22050)
+
+    if display:
+        plt.ylabel('Mel')
+        plt.xlabel('Time [samples]')
+        plt.show()
+
+
+def process_audio(filename, frame_size, mel_bands, fmax, display):
     """ act audio metadata and compute the dynamic spectrogram.
 
     Prepare the audio file and process it to compute the dynamic spectrograms
@@ -95,4 +116,5 @@ def process_audio(filename, frame_size, display):
                 y = block[:, chan]
             # Compute the dynamic spectrogram
             #  y = block[:, chan]
-            spectrogram(y, display=True)
+            dynamic_spectrogram(y, display=display)
+            static_spectrogram(y, mel_bands, fmax, display=display)
