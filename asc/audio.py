@@ -34,8 +34,8 @@ def extract_audio_data(filename):
 def dynamic_spectrogram(data, display=False):
     """ Compute the spectrogram of a time serie of samples.
 
-    The dynamic spectrogram is computed using the `spectrogram()` function
-    provided by Scipy.
+    The dynamic spectrogram is obtained by computing the the signal in the
+    frequency domain and display the spectrogram.
 
     Args:
         data (array): 1D array of audio data.
@@ -62,6 +62,31 @@ def dynamic_spectrogram(data, display=False):
 
 
 def static_spectrogram(data, mel_bands=128, fmax=22050, display=False):
+    """ Compute the static spectrogram of a time serie of samples.
+
+    The static spectromgram is computed by take the power of the signal in the
+    frequency domain according a decomposition in mel bands and a maximum
+    frequency.
+
+    Args:
+        data (array): 1D array of audio data.
+        mel_bands (int): number of mel bands for the decomposition
+        fmax (int): maximum frequency (in Hertz).
+        display (boolean): plotting or saving the output figure.
+
+    Returns:
+        None
+
+    Todo:
+        - remove the padding/margin around the plot
+        - Add a path and a name where to save the plots
+
+    Note:
+        Need to ensure that the computation is accurate
+
+    """
+
+
     data_freq_power = np.abs(librosa.stft(data))**2
     librosa.feature.melspectrogram(
             S=data_freq_power,
