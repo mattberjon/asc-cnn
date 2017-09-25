@@ -7,6 +7,10 @@ Configuration
 +------------------+---------------------+-----------------------------------------------------------------+
 | audio.samplerate | (int) default=44100 | Samplerate of the project in Hertz                              |
 +------------------+---------------------+-----------------------------------------------------------------+
+| audio.mel_bands  | (int) default=128   | Number of mel bands for the filter                              |
++------------------+---------------------+-----------------------------------------------------------------+
+| audio.fmax       | (int) default=22050 | Frequency max in Hertz for the mel filter decomposition         |
++------------------+---------------------+-----------------------------------------------------------------+
 | path.tmp         | (str) default='/tmp'| Path to the temporary download folder                           |
 +------------------+---------------------+-----------------------------------------------------------------+
 | path.data        | (str) default='~/'  | Path to the data folder                                         |
