@@ -20,10 +20,10 @@ class Data(object):
 
     def file_to_list(self, filename):
         """ Parse a file and transform it into a list
-        
+
         Parse a file line by line to make a list with the urls contained
         inside.
-        
+
         Args:
             filename (str): path to the file containing the URLs.
 
