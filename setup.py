@@ -12,6 +12,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
+    'numpy==1.13.1',
     'Click>=6.0',
     'backports.weakref==1.0rc1',
     'bleach==1.5.0',
@@ -21,7 +22,7 @@ requirements = [
     'Markdown==2.6.8',
     'matplotlib==2.0.2',
     'mock==2.0.0',
-    'numpy==1.13.1',
+    'numba>=0.35.0',
     'pbr==3.1.1',
     'protobuf==3.3.0',
     'pyparsing==2.2.0',
