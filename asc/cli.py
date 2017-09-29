@@ -137,7 +137,7 @@ def getdata():
     if os.path.isdir(dest_path):
         # python 3: needs to use input() instead of raw_input()
         user_input = raw_input(
-                "The %s already exists, do you still want to proceed? [y/N]"
+                "The %s already exists, do you still want to proceed? [y/N]: "
                 % dest_path)
         if user_input == 'y':
             click.echo("Ok! let's continue to the next step")
@@ -153,7 +153,7 @@ def getdata():
     # start download
     get_data = data.Data()
     file_list = get_data.file_to_list(url_list)
-    #  get_data.download(file_list, tmp_path)
+    get_data.download(file_list, tmp_path)
 
     # unzip the files
     get_data.unzip_data(file_list, tmp_path, dest_path)
