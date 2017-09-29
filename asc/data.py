@@ -34,7 +34,6 @@ class Data(object):
                 lines.append(line.split('\n')[0])
         return lines
 
-
     def download(self, url_list, dest_dir):
         """ Download data from a list of URLs
 
@@ -48,6 +47,7 @@ class Data(object):
         """
         elem_nb = len(url_list)
         counter = 0
+        dest_dir = os.path.abspath(dest_dir)
 
         for elem in url_list:
             filename = elem.split('/')[-1]
@@ -82,6 +82,7 @@ class Data(object):
             origin_dir (str): directory where are stored the files
             dest_dir (str): directory where the files will be extracted
         """
+        origin_dir = os.path.abspath(origin_dir)
         for elem in url_list:
             filename = os.path.basename(elem)
             zip_ref = zipfile.ZipFile(origin_dir + '/' + filename, 'r')
