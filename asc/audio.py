@@ -97,7 +97,7 @@ def static_spectrogram(data, mel_bands=128, fmax=22050, display=False):
             librosa.power_to_db(data_freq_power, ref=np.max),
             y_axis='mel',
             x_axis='time',
-            fmax=22050)
+            fmax=fmax)
 
     if display:
         plt.ylabel('Mel')
