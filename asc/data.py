@@ -99,6 +99,6 @@ class Data(object):
             tmp_dir (str): path where are store the archives
         """
         for elem in url_list:
-            filename = os.path.basename(elem)
+            #  filename = os.path.basename(elem)
             os.remove(tmp_dir + '/' + elem)
             print("%s deleted" % elem)

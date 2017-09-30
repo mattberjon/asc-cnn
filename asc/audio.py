@@ -86,7 +86,6 @@ def static_spectrogram(data, mel_bands=128, fmax=22050, display=False):
 
     """
 
-
     data_freq_power = np.abs(librosa.stft(data))**2
     librosa.feature.melspectrogram(
             S=data_freq_power,
