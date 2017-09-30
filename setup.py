@@ -22,7 +22,6 @@ requirements = [
     'Markdown==2.6.8',
     'matplotlib==2.0.2',
     'mock==2.0.0',
-    'numba>=0.35.0',
     'pbr==3.1.1',
     'protobuf==3.3.0',
     'pyparsing==2.2.0',

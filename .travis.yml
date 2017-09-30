@@ -6,10 +6,10 @@ python: 2.7
 
 before_script:
   - sudo apt-get update -qq
-  - sudo apt-get install -y python3-tk python-numpy python3-numpy
+  - sudo apt-get install -y python3-tk
 
 env:
-  - TOXENV=py35
+  - TOXENV=py36
   - TOXENV=py34
   - TOXENV=py27
 
