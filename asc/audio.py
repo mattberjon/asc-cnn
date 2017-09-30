@@ -61,7 +61,13 @@ def dynamic_spectrogram(data, display=False):
         plt.save()
 
 
-def static_spectrogram(data, mel_bands=128, fmax=22050, display=False):
+def static_spectrogram(
+        data,
+        mel_bands=128,
+        fmax=22050,
+        x_axis='time',
+        y_axis='mel',
+        display=False):
     """ Compute the static spectrogram of a time serie of samples.
 
     The static spectromgram is computed by take the power of the signal in the
@@ -95,8 +101,8 @@ def static_spectrogram(data, mel_bands=128, fmax=22050, display=False):
 
     librosa.display.specshow(
             librosa.power_to_db(data_freq_power, ref=np.max),
-            y_axis='mel',
-            x_axis='time',
+            y_axis=y_axis,
+            x_axis=x_axis,
             fmax=fmax)
 
     if display:
