@@ -1,7 +1,6 @@
 from click.testing import CliRunner
 import configparser
 import pytest
-import os
 
 
 @pytest.fixture(scope='function')
