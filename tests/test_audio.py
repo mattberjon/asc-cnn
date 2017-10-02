@@ -32,3 +32,26 @@ def test_static_spectrogram():
 
     with pytest.raises(TypeError):
         audio.static_spectrogram(np.array([1, 2, 3]), fmax='string')
+
+
+def test_dynamic_spectrogram():
+    with pytest.raises(ParameterError):
+        audio.dynamic_spectrogram(1)
+
+    with pytest.raises(TypeError):
+        audio.dynamic_spectrogram(np.array([1, 2, 3]), ref='something')
+
+
+def process_audio():
+    data_path = os.path.dirname(os.path.realpath(__name__))
+    audio_file = data_path + '/audio_data/sine_44100_2ch.wav'
+
+    with pytest.raises(TypeError):
+        audio.process_audio(audio_file, 'something', 128, 22050, True)
+
+    with pytest.raises(ValueError):
+        audio.process_audio(audio_file, 512, 'something', 22050, True)
+
+    with pytest.raises(TypeError):
+        audio.process_audio(audio_file, 512, 128, 'something', True)
+

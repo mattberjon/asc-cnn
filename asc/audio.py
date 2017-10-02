@@ -31,7 +31,7 @@ def extract_audio_data(filename):
     return af_chan_nb, af_samplerate
 
 
-def dynamic_spectrogram(data, display=False):
+def dynamic_spectrogram(data, ref=np.max, display=False):
     """ Compute the spectrogram of a time serie of samples.
 
     The dynamic spectrogram is obtained by computing the the signal in the
@@ -50,7 +50,7 @@ def dynamic_spectrogram(data, display=False):
 
     """
     data_freq = librosa.stft(data)
-    data_freq_db = librosa.amplitude_to_db(data_freq, ref=np.max)
+    data_freq_db = librosa.amplitude_to_db(data_freq, ref=ref)
     librosa.display.specshow(data_freq_db)
 
     if display:
