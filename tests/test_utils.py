@@ -2,41 +2,21 @@ import pytest
 from asc import utils
 
 
-def test_read_config(config):
-    with pytest.raises(ValueError):
-        utils.read_config('something', 'nonexisting', config)
-
-    config.add_section('audio')
-    config.set('audio', 'samplerate', '44100')
-    assert utils.read_config('audio', 'samplerate', config) == '44100'
-
 
 def test_write_config(config):
-    config_path = '/tmp/asc.conf'
-    config.read(config_path)
-    config_file = open(config_path, 'w')
+    with pytest.raises(TypeError):
+        utils.write_config(42, 'option', 'value')
 
     with pytest.raises(TypeError):
-        utils.write_config(42, 'option', 'value', config, config_file)
+        utils.write_config('section', 42, 'value')
 
-    with pytest.raises(TypeError):
-        utils.write_config('section', 42, 'value', config, config_file)
 
-    with pytest.raises(AttributeError):
-        utils.write_config(
-                'section',
-                'option',
-                'value',
-                'something',
-                config_file)
+def test_read_config(config):
+    with pytest.raises(ValueError):
+        utils.read_config('something', 'nonexisting')
 
-    with pytest.raises(AttributeError):
-        utils.write_config(
-                'section',
-                'option',
-                'value',
-                config,
-                'something')
+    utils.write_config('audio', 'samplerate', '44100')
+    assert utils.read_config('audio', 'samplerate') == '44100'
 
 
 def test_conf_param_extract():

@@ -1,9 +1,13 @@
 import click
 import configparser
+import os
 import re
+from config import App
+
+config_path = App.config('CONFIG_PATH')
 
 
-def write_config(section, option, data, config_path):
+def write_config(section, option, data):
     """ Write/Update the configuration file
 
     Write or update the configuration file according to the section or
@@ -36,7 +40,7 @@ def write_config(section, option, data, config_path):
     config_file.close()
 
 
-def read_config(section, option, config_path):
+def read_config(section, option):
     """ Look for a given option in a config file.
 
     If exists, return the value in a config file according to the section
@@ -135,3 +139,31 @@ def read_user_yes_no(question, default_value):
             question,
             default=default_value,
             type=clik.BOOL)
+
+
+def create_filename(save_path, extension, *args):
+    """ Create a filename based on any pattern.
+
+    Args:
+        save_path (str): Path where the file will be saved
+        extension (str): the extension of the file (without the '.')
+        args: any other argument needed to create the filename pattern.
+
+    Returns:
+        A string containing the path and its file name.
+
+    Note:
+        All the arguments passed to the pattern are casted as strings in order
+        to avoid any issues.
+
+    Todo:
+        Check that the extension doesn't contain any '.' and remove it if
+        necessary.
+    """
+
+    fname = []
+    for count, argument in enumerate(args):
+        fname.append(str(argument) + '_')
+
+    total_path = os.path.abspath(save_path) + '/' + ''.join(fname) + '.' + extension
+    return total_path
