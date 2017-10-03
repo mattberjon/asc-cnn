@@ -1,7 +1,9 @@
+import click
+import configparser
 import re
 
 
-def write_config(section, option, data, config_obj, config_file):
+def write_config(section, option, data, config_path):
     """ Write/Update the configuration file
 
     Write or update the configuration file according to the section or
@@ -21,6 +23,9 @@ def write_config(section, option, data, config_obj, config_file):
     Todo:
         Need to cast the object to string before saving the data.
     """
+    config_obj = configparser.ConfigParser()
+    config_obj.read(config_path)
+    config_file = open(config_path, 'w')
     if config_obj.has_section(section):
         config_obj.set(section, option, str(data))
     else:
@@ -28,9 +33,10 @@ def write_config(section, option, data, config_obj, config_file):
         config_obj.set(section, option, str(data))
 
     config_obj.write(config_file)
+    config_file.close()
 
 
-def read_config(section, option, config_obj):
+def read_config(section, option, config_path):
     """ Look for a given option in a config file.
 
     If exists, return the value in a config file according to the section
@@ -47,6 +53,9 @@ def read_config(section, option, config_obj):
     Todo:
         - Be able to cast the data into the right type.
     """
+    config_obj = configparser.ConfigParser()
+    config_obj.read(config_path)
+
     if config_obj.has_option(section, option):
         return config_obj.get(section, option)
     else:
@@ -91,3 +100,38 @@ def ms2smp(ms, sample_rate):
     # The factor of 0.001 is to convert the value in milliseconds into seconds.
     # This is done because a sample rate is given in seconds.
     return int(ms * sample_rate * 0.001)
+
+
+def read_user_input(var_name, default_value):
+    """ Prompt the user for the given variable and return the entered value
+    or the given default.
+
+    Args:
+        var_name (str): Variable of the context to query the user
+        default_value (str): Value that will be returned if no input happens
+
+    Return
+        The user input or the default value
+
+    """
+    return click.prompt(var_name, default=default_value)
+
+
+def read_user_yes_no(question, default_value):
+    """ Prompt the user to reply with 'yes' or 'no' (or equivalent).
+
+    Args:
+        question (str): Question to the user
+        default_value (bool): Value that will be returned if no input happens
+
+    Returns:
+        The user input or the default value
+
+    Note:
+        Possible choices are 'true', '1', 'yes', 'y' or 'false', '0', 'no', 'n'
+
+    """
+    return click.prompt(
+            question,
+            default=default_value,
+            type=clik.BOOL)
