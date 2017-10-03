@@ -12,10 +12,11 @@ from . import __version__
 from . import audio
 from . import data
 from . import utils
+from config import App
 
-config_path = os.path.abspath(os.path.expanduser('~')) + '/.ascrc'
-url_list_path = os.path.dirname(os.path.realpath(__name__)) \
-        + '/samples/url_list.txt'
+
+config_path = App.config('CONFIG_PATH')
+url_list_path = App.config('URL_PATH')
 
 
 def version_msg():
@@ -67,7 +68,12 @@ def main(ctx):
         default=22050,
         help='Frequency max to apply to the mel band in Hertz.\
                 [default=22050]')
-def processing(frame_size, filename, mel_bands, frequency_max):
+@click.option(
+        '-D',
+        '--debug',
+        is_flag=True,
+        help='Display each spectrograms per block')
+def processing(frame_size, filename, mel_bands, frequency_max, debug):
     """ Set up the audio processing chain.
     """
     audio.process_audio(
@@ -75,7 +81,7 @@ def processing(frame_size, filename, mel_bands, frequency_max):
             frame_size,
             mel_bands,
             frequency_max,
-            display=True)
+            display=debug)
 
 
 @main.command()
@@ -92,8 +98,7 @@ def config(parameter, value):
     utils.write_config(
             section,
             option,
-            value,
-            config_path)
+            value)
 
 
 @main.command()
@@ -106,9 +111,9 @@ def getdata():
     # Check the data folder. If the folder doesn't exist, we create it,
     # if it exist, then ask the user if we can override it before proceed
     # to do anything else and store the path in a config file.
-    url_list = utils.read_config('path', 'url_list', config_path)
-    tmp_path = utils.read_config('path', 'archive', config_path)
-    data_path = utils.read_config('path', 'data', config_path)
+    url_list = utils.read_config('path', 'url_list')
+    tmp_path = utils.read_config('path', 'archive')
+    data_path = utils.read_config('path', 'data')
 
     dest_path = os.path.abspath(data_path) + '/data'
 
@@ -157,15 +162,15 @@ def setup():
 
     # save the information in the config file
     section = 'path'
-    utils.write_config(section, 'root', root_path, config_path)
-    utils.write_config(section, 'archive', archive_path, config_path)
-    utils.write_config(section, 'audio', archive_path, config_path)
-    utils.write_config(section, 'spectrograms', specs_path, config_path)
+    utils.write_config(section, 'root', root_path)
+    utils.write_config(section, 'archive', archive_path)
+    utils.write_config(section, 'audio', archive_path)
+    utils.write_config(section, 'spectrograms', specs_path)
 
     # Copy the URL file into the data folder
     url_list = root_path + '/url_list.txt'
     copyfile(url_list_path, url_list)
-    utils.write_config(section, 'url_list', url_list, config_path)
+    utils.write_config(section, 'url_list', url_list)
 
 
 if __name__ == "__main__":
