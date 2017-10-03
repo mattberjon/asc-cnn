@@ -6,13 +6,16 @@ import click
 import configparser
 import os
 import sys
+from shutil import copyfile
 
 from . import __version__
+from . import audio
 from . import data
 from . import utils
-from . import audio
 
-config_path = os.path.expanduser('~') + '/.ascrc'
+config_path = os.path.abspath(os.path.expanduser('~')) + '/.ascrc'
+url_list_path = os.path.dirname(os.path.realpath(__name__)) \
+        + '/samples/url_list.txt'
 
 
 def version_msg():
@@ -86,15 +89,11 @@ def config(parameter, value):
     """
     # Separation the section from the option
     section, option = utils.conf_param_extract(parameter)
-    config = configparser.ConfigParser()
-    config.read(config_path)
-    config_file = open(config_path, 'w')
     utils.write_config(
             section,
             option,
             value,
-            config,
-            config_file)
+            config_path)
 
 
 @main.command()
@@ -107,12 +106,9 @@ def getdata():
     # Check the data folder. If the folder doesn't exist, we create it,
     # if it exist, then ask the user if we can override it before proceed
     # to do anything else and store the path in a config file.
-    config = configparser.ConfigParser()
-    config.read(config_path)
-
-    url_list = utils.read_config('path', 'url_list', config)
-    tmp_path = utils.read_config('path', 'tmp', config)
-    data_path = utils.read_config('path', 'data', config)
+    url_list = utils.read_config('path', 'url_list', config_path)
+    tmp_path = utils.read_config('path', 'archive', config_path)
+    data_path = utils.read_config('path', 'data', config_path)
 
     dest_path = os.path.abspath(data_path) + '/data'
 
@@ -139,6 +135,37 @@ def getdata():
 
     # unzip the files
     get_data.unzip_data(file_list, tmp_path, dest_path)
+
+
+@main.command()
+def setup():
+    var_name = 'Root path of the project'
+    default_value = '~/asc-data'
+    ret_val = utils.read_user_input(var_name, default_value)
+    root_path = os.path.abspath(os.path.expanduser(ret_val))
+
+    # Setup the paths
+    archive_path = root_path + '/archives'
+    audio_path = root_path + '/audio'
+    specs_path = root_path + '/spectrograms'
+    
+    # Create the directories
+    if not os.path.isdir(root_path):
+        os.makedirs(archive_path)
+        os.makedirs(audio_path)
+        os.makedirs(specs_path)
+
+    # save the information in the config file
+    section = 'path'
+    utils.write_config(section, 'root', root_path, config_path)
+    utils.write_config(section, 'archive', archive_path, config_path)
+    utils.write_config(section, 'audio', archive_path, config_path)
+    utils.write_config(section, 'spectrograms', specs_path, config_path)
+
+    # Copy the URL file into the data folder
+    url_list = root_path + '/url_list.txt'
+    copyfile(url_list_path, url_list)
+    utils.write_config(section, 'url_list', url_list, config_path)
 
 
 if __name__ == "__main__":
