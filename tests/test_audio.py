@@ -18,28 +18,30 @@ def test_extract_audio_data():
 
 
 def test_static_spectrogram():
-    with pytest.raises(ParameterError):
-        audio.static_spectrogram(1)
+    filename = 'something'
 
     with pytest.raises(ParameterError):
-        audio.static_spectrogram(np.array([1, 2, 3]), x_axis='something')
+        audio.static_spectrogram(1, filename)
 
     with pytest.raises(ParameterError):
-        audio.static_spectrogram(np.array([1, 2, 3]), y_axis='something')
+        audio.static_spectrogram(np.array([1, 2, 3]), filename, x_axis='something')
+
+    with pytest.raises(ParameterError):
+        audio.static_spectrogram(np.array([1, 2, 3]), filename, y_axis='something')
 
     with pytest.raises(ValueError):
-        audio.static_spectrogram(np.array([1, 2, 3]), mel_bands='string')
+        audio.static_spectrogram(np.array([1, 2, 3]), filename, mel_bands='string')
 
     with pytest.raises(TypeError):
-        audio.static_spectrogram(np.array([1, 2, 3]), fmax='string')
+        audio.static_spectrogram(np.array([1, 2, 3]), filename, fmax='string')
 
 
 def test_dynamic_spectrogram():
     with pytest.raises(ParameterError):
-        audio.dynamic_spectrogram(1)
+        audio.dynamic_spectrogram(1, 'filename')
 
     with pytest.raises(TypeError):
-        audio.dynamic_spectrogram(np.array([1, 2, 3]), ref='something')
+        audio.dynamic_spectrogram(np.array([1, 2, 3]), 'filename', ref='something')
 
 
 def process_audio():
