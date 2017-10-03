@@ -8,7 +8,6 @@ import os
 import sys
 
 from . import __version__
-#  from . import audio
 from . import data
 from . import utils
 from . import audio
@@ -98,23 +97,6 @@ def config(parameter, value):
             config_file)
 
 
-#  @click.option(
-#          '-u',
-#          '--url-file',
-#          type=click.Path(),
-#          help='Path to the file containing the URLs to download')
-#  @click.option(
-#          '-t',
-#          '--tmp-dir',
-#          type=click.Path(),
-#          default='/tmp',
-#          help='Path to the temporary download folder. [default=/tmp]')
-#  @click.option(
-#          '-d',
-#          '--dest-dir',
-#          type=click.Path(),
-#          default=os.path.expanduser('~'),
-#          help='Path to the data folder. [default=$HOME]')
 @main.command()
 def getdata():
     """Download dataset from the server.
