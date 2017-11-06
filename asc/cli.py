@@ -3,7 +3,6 @@
 """Console script for asc."""
 
 import click
-import configparser
 import os
 import sys
 from shutil import copyfile
@@ -111,35 +110,26 @@ def getdata():
     # Check the data folder. If the folder doesn't exist, we create it,
     # if it exist, then ask the user if we can override it before proceed
     # to do anything else and store the path in a config file.
-    url_list = utils.read_config('path', 'url_list')
-    tmp_path = utils.read_config('path', 'archive')
-    data_path = utils.read_config('path', 'data')
+    try:
+        url_list = utils.read_config('path', 'url_list')
+        tmp_path = utils.read_config('path', 'archive')
+        audio_path = utils.read_config('path', 'audio')
 
-    dest_path = os.path.abspath(data_path) + '/data'
+        # start download
+        get_data = data.Data()
+        file_list = get_data.file_to_list(url_list)
+        get_data.download(file_list, tmp_path)
 
-    if os.path.isdir(dest_path):
-        # python 3: needs to use input() instead of raw_input()
-        user_input = raw_input(
-                "The %s already exists, do you still want to proceed? [y/N]: "
-                % dest_path)
-        if user_input == 'y':
-            click.echo("Ok! let's continue to the next step")
-        else:
-            click.echo("Ok, bye!")
-            sys.exit()
-    else:
-        click.echo('path doesnt exist')
-        # Create the folder
-        os.makedirs(dest_path)
-        click.echo("Folder created!")
+        # unzip the files
+        get_data.unzip_data(file_list, tmp_path, tmp_path)
 
-    # start download
-    get_data = data.Data()
-    file_list = get_data.file_to_list(url_list)
-    get_data.download(file_list, tmp_path)
+        # move the files into the audio folder
+        get_data.move_files(file_list, audio_path, '*.wav')
 
-    # unzip the files
-    get_data.unzip_data(file_list, tmp_path, dest_path)
+    except ValueError:
+        print('App not configured correclty, please run the following command: \
+asc setup')
+        sys.exit()
 
 
 @main.command()
@@ -153,7 +143,7 @@ def setup():
     archive_path = root_path + '/archives'
     audio_path = root_path + '/audio'
     specs_path = root_path + '/spectrograms'
-    
+
     # Create the directories
     if not os.path.isdir(root_path):
         os.makedirs(archive_path)
