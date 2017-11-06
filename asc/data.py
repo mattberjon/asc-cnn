@@ -5,8 +5,10 @@
 This module lets the program to download the data from the server.
 
 """
+import glob
 import os
 import requests
+import shutil
 import sys
 import zipfile
 
@@ -102,3 +104,14 @@ class Data(object):
             #  filename = os.path.basename(elem)
             os.remove(tmp_dir + '/' + elem)
             print("%s deleted" % elem)
+
+    def move_files(self, url_list, origin_dir, dest_dir, pattern):
+
+        for elem in url_list:
+            pass
+
+        origin_dir = os.path.abspath(origin_dir)
+        dest_dir = os.path.abspath(dest_dir)
+
+        for file in glob.glob(origin_dir + '/' + pattern):
+            shutil.move(file, dest_dir)
