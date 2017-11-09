@@ -140,7 +140,7 @@ def read_user_yes_no(question, default_value):
     return click.prompt(
             question,
             default=default_value,
-            type=clik.BOOL)
+            type=click.BOOL)
 
 
 def create_filename(save_path, extension, *args):
@@ -167,5 +167,7 @@ def create_filename(save_path, extension, *args):
     for count, argument in enumerate(args):
         fname.append(str(argument) + '_')
 
-    total_path = os.path.abspath(save_path) + '/' + ''.join(fname) + '.' + extension
+    total_path = \
+        os.path.abspath(save_path) + '/' + ''.join(fname) + '.' + extension
+
     return total_path
