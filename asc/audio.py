@@ -28,7 +28,7 @@ def extract_audio_data(filename):
 
     Todo:
         - check if the samplerate of the file corresponds to the samplerate
-        in the configuration file
+          in the configuration file
 
     """
     audiofile = SoundFile(filename)
@@ -143,7 +143,7 @@ def process_audio(filename, frame_size, mel_bands, fmax, display):
 
     Todo:
         - check if the samplerate of the file corresponds to the samplerate
-        in the configuration file
+          in the configuration file
 
     Note:
         According to the 2016 base line code, the frame size is 40ms with

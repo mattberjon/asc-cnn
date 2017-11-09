@@ -10,15 +10,15 @@ config_path = App.config('CONFIG_PATH')
 def write_config(section, option, data):
     """ Write/Update the configuration file
 
-    Write or update the configuration file according to the section or
-    option provided.
+    Write or update the configuration file according to the section or option
+    provided.
 
     Args:
-        section (str): Name of the section
-        option (str): Name of the option
-        data (str): data related to the option to store
-        config_obj (str): instance of the configuration object)
-        config_file (str): instance of the configuration file where to save
+        section (str):      Name of the section
+        option (str):       Name of the option
+        data (str):         data related to the option to store
+        config_obj (str):   instance of the configuration object)
+        config_file (str):  instance of the configuration file where to save
                             the data
 
     Returns:
@@ -26,6 +26,7 @@ def write_config(section, option, data):
 
     Todo:
         Need to cast the object to string before saving the data.
+
     """
     config_obj = configparser.ConfigParser()
     config_obj.read(config_path)
@@ -56,6 +57,7 @@ def read_config(section, option):
 
     Todo:
         - Be able to cast the data into the right type.
+
     """
     config_obj = configparser.ConfigParser()
     config_obj.read(config_path)
