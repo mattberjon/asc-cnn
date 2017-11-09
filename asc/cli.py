@@ -15,7 +15,9 @@ from config import App
 
 
 config_path = App.config('CONFIG_PATH')
-url_list_path = App.config('URL_PATH')
+config_url_list_path = App.config('URL_PATH')
+config_tmp_path = App.config('TMP_PATH')
+config_data_path = App.config('DATA_PATH')
 
 
 def version_msg():
@@ -84,7 +86,9 @@ def processing(frame_size, filename, mel_bands, frequency_max, debug):
 
 
 @main.command()
-@click.argument('parameter')
+@click.argument(
+        'parameter',
+        type=click.STRING)
 @click.argument('value')
 def config(parameter, value):
     """ Configure the project.
@@ -112,24 +116,29 @@ def getdata():
     # to do anything else and store the path in a config file.
     try:
         url_list = utils.read_config('path', 'url_list')
-        tmp_path = utils.read_config('path', 'archive')
-        audio_path = utils.read_config('path', 'audio')
-
-        # start download
-        get_data = data.Data()
-        file_list = get_data.file_to_list(url_list)
-        get_data.download(file_list, tmp_path)
-
-        # unzip the files
-        get_data.unzip_data(file_list, tmp_path, tmp_path)
-
-        # move the files into the audio folder
-        get_data.move_files(file_list, audio_path, '*.wav')
-
     except ValueError:
-        print('App not configured correclty, please run the following command: \
-asc setup')
-        sys.exit()
+        url_list = config_url_list_path
+
+    try:
+        tmp_path = utils.read_config('path', 'tmp')
+    except ValueError:
+        tmp_path = config_tmp_path
+
+    try:
+        audio_path = utils.read_config('path', 'data') + '/audio'
+    except ValueError:
+        audio_path = config_data_path + '/audio'
+
+    # start download
+    get_data = data.Data()
+    file_list = get_data.file_to_list(url_list)
+    get_data.download(file_list, tmp_path)
+
+    # unzip the files
+    get_data.unzip_data(file_list, tmp_path, tmp_path)
+
+    # move the files into the audio folder
+    get_data.move_files(file_list, audio_path, '*.wav')
 
 
 @main.command()
