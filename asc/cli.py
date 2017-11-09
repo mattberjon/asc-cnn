@@ -137,8 +137,8 @@ def getdata():
     # unzip the files
     get_data.unzip_data(file_list, tmp_path, tmp_path)
 
-    # move the files into the audio folder
-    get_data.move_files(file_list, audio_path, '*.wav')
+    #  move the files into the audio folder
+    get_data.move_files(file_list, tmp_path, audio_path)
 
 
 @main.command()

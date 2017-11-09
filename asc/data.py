@@ -105,13 +105,32 @@ class Data(object):
             os.remove(tmp_dir + '/' + elem)
             print("%s deleted" % elem)
 
-    def move_files(self, url_list, origin_dir, dest_dir, pattern):
+    def move_files(self, url_list, origin_dir, dest_dir):
+        """ Move the audio files into the data folder
 
-        for elem in url_list:
-            pass
+        Move the audio folder created by the unzipped archives into the data
+        root folder. The function can specify the origin and destination folder
+        but assumes that the audio files are located into an folder called
+        'audio' and can't be changed.
 
-        origin_dir = os.path.abspath(origin_dir)
+        Args:
+            url_list (list): list of all the archive URLs.
+            origin_dir (str): directory of origin.
+            dest_dir (str): directory of destination.
+
+        Returns:
+            None
+
+        Todo:
+            The fact that the 'audio' folder is hard coded makes this function
+            rather bad and should be corrected in the future.
+
+        """
+        filename = os.path.basename(url_list[0])
+        zip_ref = zipfile.ZipFile(origin_dir + '/' + filename, 'r')
+        zip_info = zip_ref.infolist()
+        folder_name = zip_info[0].filename
+        origin_dir = os.path.join(origin_dir, folder_name, 'audio')
         dest_dir = os.path.abspath(dest_dir)
 
-        for file in glob.glob(origin_dir + '/' + pattern):
-            shutil.move(file, dest_dir)
+        shutil.move(origin_dir, dest_dir)
