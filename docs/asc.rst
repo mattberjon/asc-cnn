@@ -4,10 +4,10 @@ asc package
 Submodules
 ----------
 
-asc\.asc module
----------------
+asc\.audio module
+-----------------
 
-.. automodule:: asc.asc
+.. automodule:: asc.audio
     :members:
     :undoc-members:
     :show-inheritance:

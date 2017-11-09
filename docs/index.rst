@@ -15,5 +15,5 @@ Contents:
    authors
    history
    faq
-   source/asc
-   source/modules
+   asc
+   modules
