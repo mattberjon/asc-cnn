@@ -168,7 +168,7 @@ def setup():
 
     # Copy the URL file into the data folder
     url_list = root_path + '/url_list.txt'
-    copyfile(url_list_path, url_list)
+    copyfile(config_url_list_path, url_list)
     utils.write_config(section, 'url_list', url_list)
 
 
