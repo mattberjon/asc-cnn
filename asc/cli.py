@@ -78,14 +78,14 @@ def processing(frame_size, filename, mel_bands, frequency_max, debug):
     """ Set up the audio processing chain.
     """
     audio_path = utils.read_config('path', 'audio')
-    print(audio_path)
-    sys.exit()
-    audio.process_audio(
-            filename,
-            frame_size,
-            mel_bands,
-            frequency_max,
-            display=debug)
+    for audio_item in os.listdir(audio_path):
+        complete_path = os.path.join(audio_path, audio_item)
+        audio.process_audio(
+                complete_path,
+                frame_size,
+                mel_bands,
+                frequency_max,
+                display=debug)
 
 
 @main.command()
