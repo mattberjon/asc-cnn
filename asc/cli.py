@@ -143,6 +143,11 @@ def getdata():
 
 @main.command()
 def setup():
+    """ Create the necessary folders and update the config file
+
+    This command asks for the root folder, create the necessary folders and
+    update the configuration file accordingly.
+    """
     var_name = 'Root path of the project'
     default_value = '~/asc-data'
     ret_val = utils.read_user_input(var_name, default_value)
