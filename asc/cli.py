@@ -154,9 +154,11 @@ def setup():
     specs_path = root_path + '/spectrograms'
 
     # Create the directories
-    if not os.path.isdir(root_path):
+    if not os.path.isdir(archive_path):
         os.makedirs(archive_path)
+    if not os.path.isdir(audio_path):
         os.makedirs(audio_path)
+    if not os.path.isdir(specs_path):
         os.makedirs(specs_path)
 
     # save the information in the config file
