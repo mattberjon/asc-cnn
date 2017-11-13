@@ -77,6 +77,9 @@ def main(ctx):
 def processing(frame_size, filename, mel_bands, frequency_max, debug):
     """ Set up the audio processing chain.
     """
+    audio_path = utils.read_config('path', 'audio')
+    print(audio_path)
+    sys.exit()
     audio.process_audio(
             filename,
             frame_size,
@@ -170,7 +173,7 @@ def setup():
     section = 'path'
     utils.write_config(section, 'root', root_path)
     utils.write_config(section, 'archive', archive_path)
-    utils.write_config(section, 'audio', archive_path)
+    utils.write_config(section, 'audio', audio_path)
     utils.write_config(section, 'spectrograms', specs_path)
 
     # Copy the URL file into the data folder
