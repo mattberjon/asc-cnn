@@ -128,7 +128,7 @@ def getdata():
         tmp_path = config_tmp_path
 
     try:
-        audio_path = utils.read_config('path', 'data') + '/audio'
+        audio_path = utils.read_config('path', 'audio')
     except ValueError:
         audio_path = config_data_path + '/audio'
 

@@ -9,7 +9,7 @@ class App:
             'CONFIG_PATH': os.path.abspath(os.path.expanduser('~')) + '/.ascrc',
             'URL_PATH': os.path.join(basedir, 'samples/url_list.txt'),
             'TMP_PATH': tempfile.gettempdir(),
-            'DATA_PATH': os.path.abspath(os.path.expanduser('~')) + '/data'
+            'DATA_PATH': os.path.abspath(os.path.expanduser('~')) + '/asc-data'
             }
 
     @staticmethod
