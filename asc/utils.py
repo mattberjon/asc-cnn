@@ -17,9 +17,6 @@ def write_config(section, option, data):
         section (str):      Name of the section
         option (str):       Name of the option
         data (str):         data related to the option to store
-        config_obj (str):   instance of the configuration object)
-        config_file (str):  instance of the configuration file where to save
-                            the data
 
     Returns:
         None
@@ -50,7 +47,6 @@ def read_config(section, option):
     Args:
         section (str):  section related to the option looked for.
         option (str):   option related to the value looked for.
-        config_obj (obj):   configparser object.
 
     Returns:
         value given for a specific tuple section/option.
