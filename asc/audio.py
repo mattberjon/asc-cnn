@@ -9,7 +9,6 @@ from soundfile import SoundFile, blocks as sfblocks
 
 from . import utils
 from config import App
-import sys
 
 config_path = App.config('CONFIG_PATH')
 
@@ -67,7 +66,12 @@ def dynamic_spectrogram(data, filename, block_nb=0, ref=np.max, display=False):
     else:
         spec_path = utils.read_config('path', 'spectrograms')
         fname = os.path.splitext(os.path.basename(filename))
-        fig_path = utils.create_filename(spec_path, 'png', fname[0], 'dynamic', block_nb)
+        fig_path = utils.create_filename(
+                spec_path,
+                'png',
+                fname[0],
+                'dynamic',
+                block_nb)
         plt.savefig(fig_path)
 
 
@@ -123,7 +127,12 @@ def static_spectrogram(
     else:
         spec_path = utils.read_config('path', 'spectrograms')
         fname = os.path.splitext(os.path.basename(filename))
-        fig_path = utils.create_filename(spec_path, 'png', fname[0], 'static', block_nb)
+        fig_path = utils.create_filename(
+                spec_path,
+                'png',
+                fname[0],
+                'static',
+                block_nb)
         plt.savefig(fig_path)
 
 
@@ -163,7 +172,14 @@ def process_audio(filename, frame_size, mel_bands, fmax, display):
             else:
                 y = block[:, chan]
             # Compute the dynamic spectrogram
-            #  y = block[:, chan]
-            #  dynamic_spectrogram(y, display=display, filename, block_nb=counter)
-            dynamic_spectrogram(y, filename, block_nb=counter, display=display)
-            static_spectrogram(y, filename, counter, mel_bands, fmax, display=display)
+            dynamic_spectrogram(
+                    y,
+                    filename,
+                    block_nb=counter,
+                    display=display)
+            static_spectrogram(
+                    y,
+                    filename,
+                    counter,
+                    mel_bands,
+                    fmax, display=display)

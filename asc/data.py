@@ -5,7 +5,6 @@
 This module lets the program to download the data from the server.
 
 """
-import glob
 import os
 import requests
 import shutil
