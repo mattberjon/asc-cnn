@@ -1,5 +1,3 @@
-.. highlight:: shell
-
 ============
 Installation
 ============
@@ -30,12 +28,13 @@ In order to properly work you need to satisfy several dependencies:
 
 - tkinter (python 2 or 3 depending of your system)
 - libsndfile
+- python-dev
 
 For example on Debian:
 
 .. code-block:: console
   
-  $ sudo apt-get install libsndfile python-tk
+  $ sudo apt-get install libsndfile python-tk python-dev
 
 If you still have issues at the installation, you can still refer to the
 :doc:`faq` or post an issue on the `Github repo`_.
