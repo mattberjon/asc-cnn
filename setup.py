@@ -34,6 +34,7 @@ requirements = [
     'PySoundFile==0.9.0.post1',
     'requests==2.18.4',
     'librosa==0.5.1',
+    'configparser==3.5.0',
 ]
 
 setup_requirements = [
