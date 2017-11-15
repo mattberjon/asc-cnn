@@ -24,16 +24,28 @@ def test_static_spectrogram():
         audio.static_spectrogram(1, filename)
 
     with pytest.raises(ParameterError):
-        audio.static_spectrogram(np.array([1, 2, 3]), filename, x_axis='something')
+        audio.static_spectrogram(
+                np.array([1, 2, 3]),
+                filename,
+                x_axis='something')
 
     with pytest.raises(ParameterError):
-        audio.static_spectrogram(np.array([1, 2, 3]), filename, y_axis='something')
+        audio.static_spectrogram(
+                np.array([1, 2, 3]),
+                filename,
+                y_axis='something')
 
     with pytest.raises(ValueError):
-        audio.static_spectrogram(np.array([1, 2, 3]), filename, mel_bands='string')
+        audio.static_spectrogram(
+                np.array([1, 2, 3]),
+                filename,
+                mel_bands='string')
 
     with pytest.raises(TypeError):
-        audio.static_spectrogram(np.array([1, 2, 3]), filename, fmax='string')
+        audio.static_spectrogram(
+                np.array([1, 2, 3]),
+                filename,
+                fmax='string')
 
 
 def test_dynamic_spectrogram():
@@ -41,10 +53,13 @@ def test_dynamic_spectrogram():
         audio.dynamic_spectrogram(1, 'filename')
 
     with pytest.raises(TypeError):
-        audio.dynamic_spectrogram(np.array([1, 2, 3]), 'filename', ref='something')
+        audio.dynamic_spectrogram(
+                np.array([1, 2, 3]),
+                'filename',
+                ref='something')
 
 
-def process_audio():
+def test_process_audio():
     data_path = os.path.dirname(os.path.realpath(__name__))
     audio_file = data_path + '/audio_data/sine_44100_2ch.wav'
 
@@ -52,8 +67,7 @@ def process_audio():
         audio.process_audio(audio_file, 'something', 128, 22050, True)
 
     with pytest.raises(ValueError):
-        audio.process_audio(audio_file, 512, 'something', 22050, True)
+        audio.process_audio(audio_file, 1, 'something', 22050, True)
 
     with pytest.raises(TypeError):
-        audio.process_audio(audio_file, 512, 128, 'something', True)
-
+        audio.process_audio(audio_file, 1, 128, 'something', True)
