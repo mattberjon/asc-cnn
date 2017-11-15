@@ -53,8 +53,8 @@ def main(ctx):
         '-fs',
         '--frame-size',
         type=int,
-        default=1,
-        help='Frame size in samples. 1 frame=512 samples [default=1]')
+        default=9,
+        help='Frame size in samples. 1 frame=512 samples [default=9]')
 @click.option(
         '-m',
         '--mel-bands',
