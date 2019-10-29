@@ -30,7 +30,7 @@ requirements = [
     'scipy==0.19.1',
     'six==1.10.0',
     'tensorflow==1.2.1',
-    'Werkzeug==0.12.2',
+    'Werkzeug==0.15.3',
     'PySoundFile==0.9.0.post1',
     'requests>=2.20.0',
     'librosa==0.5.1',
